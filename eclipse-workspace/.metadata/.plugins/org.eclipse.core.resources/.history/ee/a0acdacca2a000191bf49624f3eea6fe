@@ -1,0 +1,12 @@
+
+
+public class variantModel {
+	
+	int number;
+	String[] tasks = new String[3];
+	
+	public void getTask(int taskNumber) {
+		
+	}
+
+}
