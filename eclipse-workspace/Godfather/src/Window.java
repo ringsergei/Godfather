@@ -81,7 +81,7 @@ public class Window extends JFrame{
 		         GraphicsEnvironment.getLocalGraphicsEnvironment();
 		     ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File(ABSOLUTE_PATH + "/fonts/HollyWoodHills.ttf")));
 		     ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File(ABSOLUTE_PATH + "/fonts/OCR.TTF")));
-		     ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File(ABSOLUTE_PATH + "/fonts/Consolas.ttf")));
+		     ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File(ABSOLUTE_PATH + "/fonts/consolas.ttf")));
 		} catch (IOException|FontFormatException e) {
 		     System.out.println(e);
 		}
@@ -149,7 +149,7 @@ class myKeyListener implements KeyListener{
 
 class AdminPanel extends JPanel{
 	
-	String name;
+	String name = "";
 	int width, height;
 	
 	public AdminPanel(Window window, JPanel contentPane) {
@@ -171,6 +171,7 @@ class AdminPanel extends JPanel{
                 cardLayout.show(contentPane, "Main page");
 			}
 		});
+		
 		BackButton.setFocusable(false);
 		BackButton.setFocusTraversalKeysEnabled(false);
 		BackButton.setFocusPainted(false);
@@ -187,6 +188,7 @@ class AdminPanel extends JPanel{
 		String[] databases = databse_folder.list();
 		
 		JTree tree = new JTree();
+		tree.setFocusable(false);
 		tree.setBorder(new EmptyBorder(100, 30, 0, 0));
 		tree.setBackground(new Color(255,204,96));
 		tree.setModel(new DefaultTreeModel(
@@ -253,6 +255,7 @@ class AdminPanel extends JPanel{
 		taskLabel1.setBorder(new EmptyBorder(0, 0, 20, 0));
 		
 		JTextArea textArea1 = new JTextArea();
+		textArea1.addKeyListener(new myKeyListener());
 		textArea1.setMaximumSize(new Dimension(30, 30));
 		textArea1.setBackground(Color.WHITE);
 		splitPane1.setRightComponent(textArea1);
@@ -265,6 +268,7 @@ class AdminPanel extends JPanel{
 		taskLabel2.setBorder(new EmptyBorder(0, 0, 20, 0));
 		
 		JTextArea textArea2 = new JTextArea();
+		textArea2.addKeyListener(new myKeyListener());
 		textArea2.setMaximumSize(new Dimension(30, 30));
 		textArea2.setBackground(Color.WHITE);
 		splitPane2.setRightComponent(textArea2);
@@ -305,6 +309,7 @@ class AdminPanel extends JPanel{
 		splitTitle.setDividerSize(0);
 		splitTitle.setLeftComponent(new myLabel("Title"));
 		myTextArea titleArea = new myTextArea();
+		titleArea.addKeyListener(new myKeyListener());
 		splitTitle.setRightComponent(titleArea);
 		
 		
@@ -312,32 +317,36 @@ class AdminPanel extends JPanel{
 		splitFirst.setBorder(null);
 		splitFirst.setBackground(new Color(255,204,96));
 		splitFirst.setDividerSize(0);
-		splitFirst.setLeftComponent(new myLabel("  —  "));
+		splitFirst.setLeftComponent(new myLabel("  ï¿½  "));
 		myTextArea firstArea = new myTextArea();
+		firstArea.addKeyListener(new myKeyListener());
 		splitFirst.setRightComponent(firstArea);
 		
 		JSplitPane splitSecond = new JSplitPane();
 		splitSecond.setBorder(null);
 		splitSecond.setBackground(new Color(255,204,96));
 		splitSecond.setDividerSize(0);
-		splitSecond.setLeftComponent(new myLabel("  —  "));
+		splitSecond.setLeftComponent(new myLabel("  ï¿½  "));
 		myTextArea secondArea = new myTextArea();
+		secondArea.addKeyListener(new myKeyListener());
 		splitSecond.setRightComponent(secondArea);
 		
 		JSplitPane splitThird = new JSplitPane();
 		splitThird.setBorder(null);
 		splitThird.setBackground(new Color(255,204,96));
 		splitThird.setDividerSize(0);
-		splitThird.setLeftComponent(new myLabel("  —  "));
+		splitThird.setLeftComponent(new myLabel("  ï¿½  "));
 		myTextArea thirdArea = new myTextArea();
+		thirdArea.addKeyListener(new myKeyListener());
 		splitThird.setRightComponent(thirdArea);
 		
 		JSplitPane splitForth = new JSplitPane();
 		splitForth.setBorder(null);
 		splitForth.setBackground(new Color(255,204,96));
 		splitForth.setDividerSize(0);
-		splitForth.setLeftComponent(new myLabel("  —  "));
+		splitForth.setLeftComponent(new myLabel("  ï¿½  "));
 		myTextArea forthArea = new myTextArea();
+		forthArea.addKeyListener(new myKeyListener());
 		splitForth.setRightComponent(forthArea);
 		
 		littlePanel.add(splitTitle);
@@ -355,19 +364,24 @@ class AdminPanel extends JPanel{
 		JButton SubmitButton = new JButton("Submit");
 		SubmitButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				variantModel variant = new variantModel();
-				variant.tasks[0] = textArea1.getText();
-				variant.tasks[1] = textArea2.getText() + ".mp3";
-				variant.tasks[2] = titleArea.getText() + "+" + "<ul><li>" + firstArea.getText() + ";</li><li>" + secondArea.getText() + ";</li><li>" + thirdArea.getText() + ";</li><li>" + forthArea.getText() + ";</li></ul>";
-				DBmanager db = new DBmanager();
-				db.addSource(window.ABSOLUTE_PATH + "\\databases\\" + name, variant.createJSONObject());
-				textArea1.setText("");
-				textArea2.setText("");
-				titleArea.setText("");
-				firstArea.setText("");
-				secondArea.setText("");
-				thirdArea.setText("");
-				forthArea.setText("");
+				if(name.equals("")) {
+					JOptionPane.showMessageDialog(null, "You forget to choose database!","Adding problem",JOptionPane.ERROR_MESSAGE);
+				}
+				else if(!textArea1.getText().equals("") && !textArea2.getText().equals("") && !titleArea.equals("")) {
+					variantModel variant = new variantModel();
+					variant.tasks[0] = textArea1.getText();
+					variant.tasks[1] = textArea2.getText() + ".mp3";
+					variant.tasks[2] = titleArea.getText() + "+" + "<ul><li>" + firstArea.getText() + ";</li><li>" + secondArea.getText() + ";</li><li>" + thirdArea.getText() + ";</li><li>" + forthArea.getText() + ";</li></ul>";
+					DBmanager db = new DBmanager();
+					db.addSource(window.ABSOLUTE_PATH + "/databases/" + name, variant.createJSONObject());
+					textArea1.setText("");
+					textArea2.setText("");
+					titleArea.setText("");
+					firstArea.setText("");
+					secondArea.setText("");
+					thirdArea.setText("");
+					forthArea.setText("");
+				}else {JOptionPane.showMessageDialog(null, "You didn't type something!","Adding problem",JOptionPane.ERROR_MESSAGE);}
 			}
 		});
 		SubmitButton.setContentAreaFilled(false);
@@ -378,7 +392,7 @@ class AdminPanel extends JPanel{
 		SubmitButton.setBackground(new Color(255,204,96));
 		SubmitButton.setFont(new Font("Consolas", Font.BOLD, 32));
 		SubmitButton.setHorizontalAlignment(SwingConstants.CENTER);
-		panel.add(SubmitButton);	
+		panel.add(SubmitButton);		
 	}
 	
 }
@@ -455,10 +469,10 @@ class MainPage extends JPanel{
 		button.setBounds((width/12)*8-50, (height/4)*2, 98, 183);
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				window.DATABASE_NAME = "grade11";
+				/*window.DATABASE_NAME = "grade11";
 				window.allVariants.reload(window, contentPane);
                 CardLayout cardLayout = (CardLayout) contentPane.getLayout();
-                cardLayout.next(contentPane);
+                cardLayout.next(contentPane);*/
 			}
 		});
 		panel_1.add(button);
