@@ -23,6 +23,9 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.MatteBorder;
 import javax.swing.ImageIcon;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridLayout;
 
 public class FirstFactory extends JFrame {
 
@@ -51,6 +54,8 @@ public class FirstFactory extends JFrame {
 				
 				try {
 					FirstFactory frame = new FirstFactory();
+					Task3PhotoPage_11 panell = new Task3PhotoPage_11();
+					frame.setContentPane(panell);
 					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 					frame.setUndecorated(true);
 					frame.setResizable(true);
@@ -101,7 +106,7 @@ public class FirstFactory extends JFrame {
 		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		contentPane.add(splitPane, BorderLayout.CENTER);
 		
-		JLabel TaskLabel = new JLabel("<html>Task 2. Study the advertisement.</html>");
+		JLabel TaskLabel = new JLabel("<html>Task 3. These are photos from your photo album. Choose one photo to describe to your friend.</html>");
 		TaskLabel.setBorder(new MatteBorder(0, 5, 0, 0, (Color) new Color(26,49,68)));
 		TaskLabel.setFont(new Font("Arial", Font.BOLD, 30/*window.fontSize()*/));
 		splitPane.setLeftComponent(TaskLabel);
@@ -109,21 +114,78 @@ public class FirstFactory extends JFrame {
 		JSplitPane splitPane_2 = new JSplitPane();
 		splitPane_2.setBorder(null);
 		splitPane_2.setBackground(new Color(255,204,96));
-		splitPane_2.setResizeWeight(0.75);
+		splitPane_2.setResizeWeight(0.4);
 		splitPane_2.setDividerSize(0);
-		splitPane_2.setOrientation(JSplitPane.HORIZONTAL_SPLIT);
+		splitPane_2.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		splitPane.setRightComponent(splitPane_2);
 		
-		JLabel MainLabel = new JLabel("<html>You are going to study abroad for three months in a language centre. You'd like to get more information about this language centre. In 1.5 minutes you are to ask five questions to find out the following:<ol><li>location of the language school</li><li>evening classes</li><li>number of people in a group</li><li>cost of one lesson</li><li>discounts for students</li></ol>You have 20 seconds to ask ezch qestion.</html>");
+		JLabel MainLabel = new JLabel("<html>You will have to srart speaking in 1.5 minutes and will speak for not more than 2 minutes. You have to talk continuosly. In your talk remember to speak about:<ul><li>when and where the photo was taken</li><li>what/who is in the photo</li><li>what is happening</li><li>why do you keep the photo in your album</li><li>why did you dicided to show the picture to your friend</li></ul>You have to talk continuosly, starting with \"I've chosen photo number...\".</html>");
 		//MainLabel.setBorder(new MatteBorder(0, 5, 0, 0, (Color) new Color(26,49,68)));
 		MainLabel.setForeground(new Color(26,49,68));
-		MainLabel.setFont(new Font("Arial", Font.PLAIN, 30));
+		MainLabel.setFont(new Font("Arial", Font.PLAIN, 25));
 		splitPane_2.setLeftComponent(MainLabel);
 		
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setIcon(new ImageIcon("/media/serz/SAVED/GitHubReps/Godfather/images/9.jpg"));
-		splitPane_2.setRightComponent(lblNewLabel);
+		JPanel panel = new JPanel();
+		splitPane_2.setRightComponent(panel);
+		panel.setBackground(new Color(255,204,96));
+		panel.setLayout(new GridLayout(1, 0, 0, 0));
+		
+		JButton photo1 = new JButton("");
+		photo1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				System.out.println(1);
+			}
+		});
+		photo1.setIcon(new ImageIcon("/media/serz/SAVED/GitHubReps/Godfather/images/1.jpg"));
+		photo1.setVerticalAlignment(SwingConstants.CENTER);
+		photo1.setHorizontalAlignment(SwingConstants.CENTER);
+		photo1.setContentAreaFilled(false);
+		photo1.setRolloverEnabled(false);
+		photo1.setRequestFocusEnabled(false);
+		photo1.setBorderPainted(false);
+		photo1.setEnabled(true);
+		photo1.setFocusable(false);
+		photo1.setFocusTraversalKeysEnabled(false);
+		photo1.setFocusPainted(false); 
+		panel.add(photo1);
+		
+		JButton photo2 = new JButton("");
+		photo2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				System.out.println(2);
+			}
+		});
+		photo2.setIcon(new ImageIcon("/media/serz/SAVED/GitHubReps/Godfather/images/2.jpg"));
+		photo2.setVerticalAlignment(SwingConstants.CENTER);
+		photo2.setHorizontalAlignment(SwingConstants.CENTER);
+		photo2.setContentAreaFilled(false);
+		photo2.setRolloverEnabled(false);
+		photo2.setRequestFocusEnabled(false);
+		photo2.setBorderPainted(false);
+		photo2.setEnabled(true);
+		photo2.setFocusable(false);
+		photo2.setFocusTraversalKeysEnabled(false);
+		photo2.setFocusPainted(false); 
+		panel.add(photo2);
+		
+		JButton photo3 = new JButton("");
+		photo3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				System.out.println(3);
+			}
+		});
+		photo3.setIcon(new ImageIcon("/media/serz/SAVED/GitHubReps/Godfather/images/3.jpg"));
+		photo3.setVerticalAlignment(SwingConstants.CENTER);
+		photo3.setHorizontalAlignment(SwingConstants.CENTER);
+		photo3.setContentAreaFilled(false);
+		photo3.setRolloverEnabled(false);
+		photo3.setRequestFocusEnabled(false);
+		photo3.setBorderPainted(false);
+		photo3.setEnabled(true);
+		photo3.setFocusable(false);
+		photo3.setFocusTraversalKeysEnabled(false);
+		photo3.setFocusPainted(false); 
+		panel.add(photo3);
 		
 		JSplitPane splitPane_3 = new JSplitPane();
 		splitPane_3.setBackground(new Color(255,204,96));
@@ -172,7 +234,104 @@ public class FirstFactory extends JFrame {
 		splitPane_4.setRightComponent(secondsLabel);
 		
 		
-		setContentPane(contentPane);
+		//setContentPane(contentPane);
 	}
 
+}
+
+class Task3PhotoPage_11 extends JPanel{
+	
+	ImageIcon image = new ImageIcon("/media/serz/SAVED/GitHubReps/Godfather/images/1.jpg"); 
+	 
+	public Task3PhotoPage_11() {
+		this.setBounds(0, 0, 1920, 1080);
+		this.setBackground(new Color(255,204,96));
+		this.setBorder(null);
+		this.setLayout(new BorderLayout(0, 0));
+		JButton GodfatherLabel = new JButton("GODFATHER");
+		GodfatherLabel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		GodfatherLabel.setBorder(new MatteBorder(0, 0, 5, 0, (Color) new Color(26,49,68)));
+		GodfatherLabel.setVerticalAlignment(SwingConstants.TOP);
+		GodfatherLabel.setHorizontalAlignment(SwingConstants.LEFT);
+		GodfatherLabel.setForeground(new Color(26,49,68));
+		GodfatherLabel.setFont(new Font("Hollywood Hills", Font.PLAIN, 46));
+		GodfatherLabel.setContentAreaFilled(false);
+		GodfatherLabel.setRolloverEnabled(false);
+		GodfatherLabel.setRequestFocusEnabled(false);
+		GodfatherLabel.setBorderPainted(true);
+		GodfatherLabel.setEnabled(true);
+		GodfatherLabel.setFocusable(false);
+		GodfatherLabel.setFocusTraversalKeysEnabled(false);
+		GodfatherLabel.setFocusPainted(false); 
+		this.add(GodfatherLabel, BorderLayout.NORTH);
+		
+		JSplitPane splitPane = new JSplitPane();
+		splitPane.setBorder(new EmptyBorder(100, 50, 0, 0));
+		splitPane.setBackground(new Color(255,204,96));
+		splitPane.setResizeWeight(0.5);
+		splitPane.setDividerSize(0);
+		splitPane.setOrientation(JSplitPane.HORIZONTAL_SPLIT);
+		this.add(splitPane, BorderLayout.CENTER);
+		
+		JLabel MainLabel = new JLabel("<html>You will have to srart speaking in 1.5 minutes and will speak for not more than 2 minutes. You have to talk continuosly. In your talk remember to speak about:<ul><li>when and where the photo was taken</li><li>what/who is in the photo</li><li>what is happening</li><li>why do you keep the photo in your album</li><li>why did you dicided to show the picture to your friend</li></ul>You have to talk continuosly, starting with \"I've chosen photo number...\".</html>");
+		//MainLabel.setBorder(new MatteBorder(0, 5, 0, 0, (Color) new Color(26,49,68)));
+		MainLabel.setForeground(new Color(26,49,68));
+		MainLabel.setFont(new Font("Arial", Font.PLAIN, 25));
+		splitPane.setLeftComponent(MainLabel);
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setIcon(image);
+		splitPane.setRightComponent(lblNewLabel);
+		
+		JSplitPane splitPane_2 = new JSplitPane();
+		splitPane_2.setBackground(new Color(255,204,96));
+		splitPane_2.setPreferredSize(new Dimension(0, 60));
+		splitPane_2.setBorder(null);
+		splitPane_2.setDividerSize(0);
+		splitPane_2.setOrientation(JSplitPane.VERTICAL_SPLIT);
+		this.add(splitPane_2, BorderLayout.SOUTH);
+		
+		JButton skipButton = new JButton("skip preparation >>");
+		skipButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		skipButton.setHorizontalAlignment(SwingConstants.LEFT);
+		skipButton.setFont(new Font("OCR A Extended", Font.PLAIN, 20));
+		skipButton.setBounds(20, 960, 307, 31);
+		skipButton.setContentAreaFilled(false);
+		skipButton.setRolloverEnabled(false);
+		skipButton.setRequestFocusEnabled(false);
+		skipButton.setBorderPainted(false);
+		skipButton.setEnabled(true);
+		skipButton.setFocusable(false);
+		skipButton.setFocusTraversalKeysEnabled(false);
+		skipButton.setFocusPainted(false);
+		splitPane_2.setLeftComponent(skipButton);
+		
+		JSplitPane splitPane_3 = new JSplitPane();
+		splitPane_3.setDividerSize(0);
+		splitPane_3.setResizeWeight(0.95);
+		splitPane_3.setBackground(new Color(255,204,96));
+		splitPane_3.setBorder(new EmptyBorder(0, 15, 5, 0));
+		splitPane_2.setRightComponent(splitPane_3);
+		
+		JProgressBar progressBar = new JProgressBar();
+		progressBar.setBorder(null);
+		progressBar.setForeground(new Color(26,49,68));
+		progressBar.setValue(0);
+		splitPane_3.setLeftComponent(progressBar);
+		
+		JLabel secondsLabel = new JLabel("5 sec");
+		secondsLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		secondsLabel.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 20));
+		secondsLabel.setForeground(new Color(26,49,68));
+
+		splitPane_3.setRightComponent(secondsLabel);
+		
+	}
 }
