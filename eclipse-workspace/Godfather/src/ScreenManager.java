@@ -10,9 +10,9 @@ import javax.swing.*;
 public class ScreenManager {
 	Frame frame  = new Frame();
 	ContentPane contentPane = new ContentPane();
-	HomePage home = new HomePage(frame.width, frame.height, this, frame.absolute_path);
-	AdminPanelPage admin = new AdminPanelPage(frame.width, frame.height, this, frame.absolute_path);
-	VariantStorePage store = new VariantStorePage(frame.width, frame.height, this, frame.absolute_path);
+	HomePage home = new HomePage(this);
+	AdminPanelPage admin = new AdminPanelPage(this);
+	VariantStorePage store = new VariantStorePage(this);
 	
 	public ScreenManager() {
 	
@@ -25,17 +25,5 @@ public class ScreenManager {
 	
 	public void showPage(String pageName) {
 		contentPane.showPage(pageName);
-	}
-	
-	public void setGrade9th() {
-		Grade9th grade9 = new Grade9th();
-		store.grade = new Grade9th();
-		store.BuildGrid();
-	}
-	
-	public void setGrade11th() {
-		Grade11th grade11 = new Grade11th();
-		store.grade = new Grade9th();
-		store.BuildGrid();
 	}
 }
