@@ -15,11 +15,13 @@ public abstract class Page extends JPanel{
 	
 	int width, height;
 	String absolute_path;
+	ScreenManager screenManager;
 
-	public Page(int width, int height, String absolute_path) {
-		this.width = width;
-		this.height = height;
-		this.absolute_path = absolute_path;
+	public Page(ScreenManager screenManager) {
+		this.screenManager = screenManager;
+		this.width = screenManager.frame.width;
+		this.height = screenManager.frame.height;
+		this.absolute_path = screenManager.frame.absolute_path;
 		this.setBackground(new Color(255,204,96));
 		this.setBorder(new EmptyBorder(5, 5, 5, 5));
 		this.setLayout(new BorderLayout(0, 0));
